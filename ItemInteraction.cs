@@ -124,7 +124,8 @@ public class ItemInteraction : MonoBehaviour
         switch (actionType)
         {
             case actionTypes.AnimationTriggers:
-                SetAnimatorTrigger(trigger);
+                if (controlledAnimationParameters.ContainsKey(trigger))
+                    SetAnimatorTrigger(trigger);
                 interactionFinalize();
                 break;
             case actionTypes.Show:
