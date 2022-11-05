@@ -48,7 +48,11 @@ You can add many Interaction Components to one object. For example if you want t
 
 **Opening/closing gates**
 
-Place a gate into the scene. Create closing and opening animations for this gate. Disable "loop" for animations. For gate game object add "Item Interaction" component and a box collider set as trigger. Setup Animator and that's it. Watch the video.
+Place a gate into the scene. Create closing and opening animations for this gate. Disable "loop" for animations. For gate game object add "Item Interaction" component and a box collider set as trigger. Setup Animator and that's it. Watch the video:
 
 https://user-images.githubusercontent.com/2020968/200136944-a3c7574f-606f-47a5-aa01-1af11c8931e8.mp4
 
+Let's go one step further...
+Adding the gate closing and opening sound. Triggering multiple sounds with a single trigger is a little bit tricky:
+
+https://user-images.githubusercontent.com/2020968/200138284-14fdd396-fdb7-4355-b3b4-552fcbd7b517.mp4
