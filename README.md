@@ -1,7 +1,7 @@
 # Item Interaction Component for Unity
 Component for basics interactions and very simple game logic.
 
-Just drag-and-drop this component to the object with any kind of collider (isTrigger checkbox has to be selected) and you can choose the interaction type from the list.
+**usage:** Open your Unity Project. Paste `ItemInteraction.cs` file anywhere to your Project window. Now you can use `ItemInteraction` component in any game object with any kind of collider (isTrigger checkbox has to be selected).
 
 ![Basic Example](illustrations/basic.png)
 
@@ -45,6 +45,8 @@ You can add many Interaction Components to one object. For example if you want t
 ![Advanced Example](illustrations/advanced.png)
 
 # Tutorials:
+
+*Note: You won't find the Character Controller in this repository, but you can use some character controller from Unity Starter Assets or create one by yourself. For videos I played with character controller from Unity HDRP demo scene.*
 
 **Opening/closing gates**
 
