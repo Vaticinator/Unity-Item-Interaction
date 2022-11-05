@@ -56,3 +56,7 @@ Let's go one step further...
 Adding the gate closing and opening sound. Triggering multiple sounds with a single trigger is a little bit tricky:
 
 https://user-images.githubusercontent.com/2020968/200138284-14fdd396-fdb7-4355-b3b4-552fcbd7b517.mp4
+
+Animation triggers may have an additional condition. For example, we may need a key.
+
+https://user-images.githubusercontent.com/2020968/200139511-2c88534c-234f-488a-8d35-fcee6d057e03.mp4
