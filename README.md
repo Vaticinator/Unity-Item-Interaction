@@ -43,3 +43,12 @@ You can add many Interaction Components to one object. For example if you want t
 ...Hopefully I will add some video examples soon.
 
 ![Advanced Example](illustrations/advanced.png)
+
+# Tutorials:
+
+**Opening/closing gates**
+
+Place gates into tha scene. Create closing and opening animation for this gates. Disable "loop" for animations. For gates game object add "Item Interaction" component and collider set as trigger. Setup Animator and that's it. Watch the video.
+
+https://user-images.githubusercontent.com/2020968/200136944-a3c7574f-606f-47a5-aa01-1af11c8931e8.mp4
+
