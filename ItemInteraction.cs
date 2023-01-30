@@ -10,6 +10,7 @@ public class ItemInteraction : MonoBehaviour
 {
     [SerializeField] public actionTypes actionType;
     [SerializeField] public actionTriggers actionTrigger;
+    [SerializeField] public KeyCode actionKey = KeyCode.F;
     [SerializeField] public bool repeatable = true;
 
     [SerializeField] public bool additionalCondition = false;
@@ -95,7 +96,7 @@ public class ItemInteraction : MonoBehaviour
         if (interactionDisabled || !isAdditionalConditionPassed())
             return;
 
-        if (actionTrigger == actionTriggers.OnKey && isInCollider && Input.GetKeyDown(KeyCode.F))
+        if ((actionTrigger == actionTriggers.OnKey || actionType == actionTypes.AnimationTriggers) && isInCollider && Input.GetKeyDown(actionKey))
             InvokeAction("key");
     }
 
@@ -247,6 +248,7 @@ public class ItemInteractionEditor : Editor
 {
     SerializedProperty actionType;
     SerializedProperty actionTrigger;
+    SerializedProperty actionKey;
     SerializedProperty repeatable;
     SerializedProperty additionalCondition;
     SerializedProperty conditionObject;
@@ -258,6 +260,7 @@ public class ItemInteractionEditor : Editor
     {        
         actionType = serializedObject.FindProperty("actionType");
         actionTrigger = serializedObject.FindProperty("actionTrigger");
+        actionKey = serializedObject.FindProperty("actionKey");
         repeatable = serializedObject.FindProperty("repeatable");
         additionalCondition = serializedObject.FindProperty("additionalCondition");
         conditionObject = serializedObject.FindProperty("conditionObject");
@@ -276,12 +279,15 @@ public class ItemInteractionEditor : Editor
         if (itemInteractionComponent.actionType != ItemInteraction.actionTypes.AnimationTriggers)
             EditorGUILayout.PropertyField(actionTrigger);
         else
-            EditorGUILayout.LabelField("Now you can use \"enter\", \"exit\" and \"key\" triggers in the Animator.", EditorStyles.helpBox);
+            EditorGUILayout.LabelField("Now you can use \"enter\", \"exit\" and \"key\" triggers in the Animator. Use as many of them as you need.", EditorStyles.helpBox);
+
+        if (itemInteractionComponent.actionTrigger == ItemInteraction.actionTriggers.OnKey || itemInteractionComponent.actionType == ItemInteraction.actionTypes.AnimationTriggers)
+            EditorGUILayout.PropertyField(actionKey);
 
         if (itemInteractionComponent.actionTrigger != ItemInteraction.actionTriggers.Default)
-            EditorGUILayout.PropertyField(repeatable);        
-        else
-            EditorGUILayout.LabelField("-", "Trigger action once when scene is starting.", EditorStyles.helpBox);
+            EditorGUILayout.PropertyField(repeatable);
+        else if (itemInteractionComponent.actionType != ItemInteraction.actionTypes.AnimationTriggers)
+            EditorGUILayout.LabelField(" ", "Play action once when scene is starting.", EditorStyles.helpBox);
 
         EditorGUILayout.Separator();
         EditorGUILayout.LabelField("Advanced:", EditorStyles.boldLabel);
