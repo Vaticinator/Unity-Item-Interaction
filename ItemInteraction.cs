@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using System.Linq;
 
-/* GOOD TO KNOW:  Hide/Show is disabling/enabling renderers, lights and colliders (not triggers)  */
+/* GOOD TO KNOW:  Hide/Show is disabling/enabling UI(RectTransform), renderers, lights and colliders (not triggers)  */
 
 public class ItemInteraction : MonoBehaviour
 {
@@ -158,22 +159,26 @@ public class ItemInteraction : MonoBehaviour
 
     private void Hide()
     {
-        foreach (Renderer r in targetItem.GetComponentsInChildren<Renderer>())
-            r.enabled = false;
-        foreach (Light l in targetItem.GetComponentsInChildren<Light>())
-            l.enabled = false;
-        foreach (Collider c in targetItem.GetComponentsInChildren<Collider>())
-            c.enabled = (c.isTrigger) ? c.enabled : false;
+        foreach (Renderer item in targetItem.GetComponentsInChildren<Renderer>())
+            item.enabled = false;
+        foreach (Light item in targetItem.GetComponentsInChildren<Light>())
+            item.enabled = false;
+        foreach (Collider item in targetItem.GetComponentsInChildren<Collider>())
+            item.enabled = (item.isTrigger) ? item.enabled : false;
+        if (targetItem.TryGetComponent<RectTransform>(out RectTransform canvas_item))
+            canvas_item.gameObject.SetActive(false);            
     }
 
     private void Show()
     {
-        foreach (Renderer r in targetItem.GetComponentsInChildren<Renderer>())
-            r.enabled = true;
-        foreach (Light l in targetItem.GetComponentsInChildren<Light>())
-            l.enabled = true;
-        foreach (Collider c in targetItem.GetComponentsInChildren<Collider>())
-            c.enabled = (c.isTrigger) ? c.enabled : true;
+        foreach (Renderer item in targetItem.GetComponentsInChildren<Renderer>())
+            item.enabled = true;
+        foreach (Light item in targetItem.GetComponentsInChildren<Light>())
+            item.enabled = true;
+        foreach (Collider item in targetItem.GetComponentsInChildren<Collider>())
+            item.enabled = (item.isTrigger) ? item.enabled : true;
+        if (targetItem.TryGetComponent<RectTransform>(out RectTransform canvas_item))
+            canvas_item.gameObject.SetActive(true);
     }
 
     private void PlayAudio()
